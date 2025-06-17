@@ -4,55 +4,48 @@
 # call the functions
 # while loop to continue the program until the user wants to exit
 
-def add(a, b):
-    answer = a + b
-    print(str(a) + " + " + str(b) + " = " + str(answer) + "\n")
+def add(x, y):
+    return x + y
 
-def sub(a, b):
-    answer = a - b
-    print(str(a) + " - " + str(b) + " = " + str(answer) + "\n")
+def subtract(x, y):
+    return x - y
 
-def mul(a, b):
-    answer = a * b
-    print(str(a) + " * " + str(b) + " = " + str(answer) + "\n")
+def multiply(x, y):
+    return x * y
 
-def div(a, b):
-    answer = a / b
-    print(str(a) + " / " + str(b) + " = " + str(answer) + "\n")
+def divide(x, y):
+    if y == 0:
+        return "Error! Cannot divide by zero."
+    return x / y
 
-#looping through while loop until calling quit
 while True:
-    print("A. Addition")
-    print("B. Subtraction")
-    print("C. Multiplication")
-    print("D. Division")
-    print("E. Exit")
+    print("\nSelect operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("Q. Quit")
 
-    choice = input("input your choice: ")
+    choice = input("Enter choice (1/2/3/4 or Q to quit): ").strip().lower()
 
-    if choice == "a" or choice == "A":
-        print("Addition")
-        a = int(input("input first number:"))
-        b = int(input("input second number:"))
-        add(a, b)
+    if choice == 'q':
+        print("Exiting calculator. Goodbye!")
+        break
 
-    elif choice == "b" or choice == "B":
-        print("Subtraction")
-        a = int(input("input first number:"))
-        b = int(input("input second number:"))
-        sub(a, b)
+    if choice in ('1', '2', '3', '4'):
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
 
-    elif choice == "c" or choice == "C":
-        print("Multiplication")
-        a = int(input("input first number:"))
-        b = int(input("input second number:"))
-        mul(a, b)
-
-    elif choice == "d" or choice == "D":
-        print("Division")
-        a = int(input("input first number:"))
-        b = int(input("input second number:"))
-        div(a, b)
-    elif choice == "e" or choice == "E":
-        print("program ended")
-        quit()
+            if choice == '1':
+                print(f"{num1} + {num2} = {add(num1, num2)}")
+            elif choice == '2':
+                print(f"{num1} - {num2} = {subtract(num1, num2)}")
+            elif choice == '3':
+                print(f"{num1} * {num2} = {multiply(num1, num2)}")
+            elif choice == '4':
+                print(f"{num1} / {num2} = {divide(num1, num2)}")
+        except ValueError:
+            print("Invalid input! Please enter numbers only.")
+    else:
+        print("Invalid choice! Please select 1, 2, 3, 4, or Q to quit.")
